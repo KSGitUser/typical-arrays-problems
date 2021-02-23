@@ -1,15 +1,24 @@
-
-exports.min = function min(...array) {
-  if (!array || !array.length) {
+const checkFunctionArgs = (args) => {
+  if (!args || !args.length) {
     return 0;
   }
 
-  if (array.length === 1 && Array.isArray(array[0])) {
-    if (!array[0].length) {
+  if (args.length === 1 && Array.isArray(args[0])) {
+    if (!args[0].length) {
       return 0;
     }
-    array = [...array[0]];
+    args = [...args[0]];
   }
+  return args;
+}
+
+
+exports.min = function min(...array) {
+  if (checkFunctionArgs(array) === 0) {
+    return 0;
+  } else {
+    array = checkFunctionArgs(array);
+  };
 
   let min;
 
@@ -26,7 +35,7 @@ exports.min = function min(...array) {
 }
 
 exports.max = function max(array) {
- return 0;
+  return 0;
 }
 
 exports.avg = function avg(array) {
