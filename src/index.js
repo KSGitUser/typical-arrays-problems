@@ -35,7 +35,24 @@ exports.min = function min(...array) {
 }
 
 exports.max = function max(array) {
-  return 0;
+  if (checkFunctionArgs(array) === 0) {
+    return 0;
+  } else {
+    array = checkFunctionArgs(array);
+  };
+
+  let max;
+
+  array.map((item, index) => {
+    if (index === 0) {
+      max = item;
+    }
+    if (item > max) {
+      max = item;
+    }
+  })
+
+  return max;
 }
 
 exports.avg = function avg(array) {
@@ -46,7 +63,7 @@ exports.avg = function avg(array) {
   };
 
   const reducer = (acc, currentValue) => acc + currentValue;
-  
+
   const arraySum = array.reduce(reducer, 0);
 
   return arraySum / array.length;
